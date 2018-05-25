@@ -6,7 +6,6 @@ angular.module('smogApp')
 
         var factory = {};
 
-        console.log($window.innerWidth);
         if ($window.innerWidth < 570) {
           var rotate = -90;
           var bottom = 80;
@@ -16,7 +15,6 @@ angular.module('smogApp')
         }
 
         factory.create = function(model) {
-          console.log(model);
 
           factory.options = {
             chart: {
@@ -70,7 +68,6 @@ angular.module('smogApp')
                   return '<p class="paragraph--chart-title">C<sub>6</sub>H<sub>6</sub>[µg/m<sup>3</sup>] </p>';
             }
         };
-
 
         return factory;
 

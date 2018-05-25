@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('smogApp', ['ngMessages','ngMaterial', 'xeditable','ngRoute','nvd3'])
+var app = angular.module('smogApp', ['ngMessages','ngMaterial','ngRoute','nvd3'])
 
   .config(['$routeProvider','$locationProvider','$sceProvider', function ($routeProvider,$locationProvider,$sceProvider) {
 
