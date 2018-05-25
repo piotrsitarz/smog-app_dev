@@ -11,7 +11,10 @@ app.get('/mainModel',(req, res) => {
   var modelData = [];
 
   request('http://api.gios.gov.pl/pjp-api/rest/station/findAll', (err, res, body) => {
-
+    console.log(res.statusCode);
+    if (res.statusCode === 503) {
+      req.res.end('server not available');
+    }
     var stations = JSON.parse(body);
 
     for (let i = 0; i < stations.length; i++) {
@@ -46,21 +49,16 @@ app.get('/mainModel',(req, res) => {
 
             values = values.splice(0,24);
             values = values.reverse();
-            // values = values.values.toFixed(2);
 
             for (let k = 0; k < values.length; k++) {
               if (k === 0) {
                 values[k].date =('wczoraj ' + values[k].date.substr(values[k].date.indexOf(' ')+1).toString()).slice(0,-3);
-                // values[k].value = values[k].value.toFixed(2);
               } else if (k === 23) {
                 values[k].date =('dzisiaj ' + values[k].date.substr(values[k].date.indexOf(' ')+1).toString()).slice(0,-3);
-                // values[k].value = values[k].value.toFixed(2);
               } else {
                 values[k].date = (values[k].date.substr(values[k].date.indexOf(' ')+1).toString()).slice(0,-3);
-                // values[k].value = values[k].value.toFixed(2);
               }
             }
-            // str = str.slice(0, -3)
 
             iteration++;
 

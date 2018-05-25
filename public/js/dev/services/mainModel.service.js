@@ -9,15 +9,15 @@ angular.module('smogApp')
 
         factory.get = function() {
           $http.get('/mainModel').then(function successCallback(response) {
-            if (response.status === 200) {
+            if (response.data === 'server not available') {
+              factory.show = false;
+              factory.info = 'Pobranie danych jest teraz niemożliwe, spróbuj później.';
+            } else if (response.status === 200) {
               factory.show = true;
               factory.info = 'Dane zostały wczytane!';
               for (let i = 0, len = response.data.length; i < len; i++) {
                 googleMap.addMarkers(response.data[i]);
               };
-            } else {
-              factory.show = false;
-              factory.info = 'Pobranie danych jest teraz niemożliwe, spróbuj później.';
             }
           });
         };
